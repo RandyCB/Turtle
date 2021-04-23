@@ -32,6 +32,8 @@ colorCirculo = "#ffff1a"
 colorCuadrado = "#ff0080"
 colorTriangulo = "#53ff1a"
 colorRombo = "#2576C3"
+colorPentagono = "#808080"
+colorHexagono = "#cd853f"
 
 def Circulo(radio):
     circulo = turtle.Turtle()
@@ -79,7 +81,43 @@ def Rombo(lados):
     Rombo.forward(lados)
     Rombo.end_fill()
 
+def Pentagono(lados):
+    Penta = turtle.Turtle()
+    Penta.color("black", colorPentagono)
+    Penta.begin_fill()
+
+    Penta.forward(lados)
+    Penta.left(72)
+    Penta.forward(lados)
+    Penta.left(72)
+    Penta.forward(lados)
+    Penta.left(72)
+    Penta.forward(lados)
+    Penta.left(72)
+    Penta.forward(lados)
+    Penta.end_fill()
+
+def Hexagono(lados):
+    Hexa = turtle.Turtle()
+    Hexa.color("black", colorHexagono)
+    Hexa.begin_fill()
+    
+    Hexa.right(300)
+    Hexa.forward(lados)
+    Hexa.right(300)
+    Hexa.forward(lados)
+    Hexa.right(300)
+    Hexa.forward(lados)
+    Hexa.right(300)
+    Hexa.forward(lados)
+    Hexa.right(300)
+    Hexa.forward(lados)
+    Hexa.right(300)
+    Hexa.forward(lados)
+    Hexa.end_fill()
 
 #Circulo(centimetros)
 #Cuadrado(centimetros)
 #Rombo(centimetos)
+#Pentagono(centimetros)
+#Hexagono(centimetros)
