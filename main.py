@@ -24,8 +24,9 @@ menu = """----------------------Menu----------------------\n
 #print(menu)
 #option1 = int(input("Seleccione el número de la figura a dibujar: "))
 #option2 = int(input("Selecione el número de la figura a ser inscrita: "))
-medidas = int(input("Introduzca la medida en cm para las figuras elegidas: "))
+#medidas = int(input("Introduzca la medida en cm para las figuras elegidas: "))
 
+medidas = 3
 centimetros = medidas * 44.88
 
 colorCirculo = "#ffff1a"
@@ -53,6 +54,7 @@ def Cuadrado(lado):
     cuadrado.forward(lado)
     cuadrado.left(90)
     cuadrado.forward(lado)
+    cuadrado.left(90)
     cuadrado.end_fill()
 
 def Triangulo(lados):
@@ -64,6 +66,7 @@ def Triangulo(lados):
     triangle.forward(lados)
     triangle.left(120)
     triangle.forward(lados)
+    triangle.left(120)
     triangle.end_fill()
 
 def Rombo(lados):
@@ -79,6 +82,8 @@ def Rombo(lados):
     Rombo.forward(lados)    
     Rombo.right(120)
     Rombo.forward(lados)
+
+    Rombo.right(120)
     Rombo.end_fill()
 
 def Pentagono(lados):
@@ -95,12 +100,16 @@ def Pentagono(lados):
     Penta.forward(lados)
     Penta.left(72)
     Penta.forward(lados)
+    Penta.left(72)
     Penta.end_fill()
 
 def Hexagono(lados):
     Hexa = turtle.Turtle()
     Hexa.color("black", colorHexagono)
     Hexa.begin_fill()
+
+
+    Hexa.forward(lados)
     
     Hexa.right(300)
     Hexa.forward(lados)
@@ -113,11 +122,11 @@ def Hexagono(lados):
     Hexa.right(300)
     Hexa.forward(lados)
     Hexa.right(300)
-    Hexa.forward(lados)
     Hexa.end_fill()
 
-#Circulo(centimetros)
+Circulo(centimetros)
 #Cuadrado(centimetros)
-#Rombo(centimetos)
+Rombo(centimetros)
 #Pentagono(centimetros)
 #Hexagono(centimetros)
+#Triangulo(centimetros)
