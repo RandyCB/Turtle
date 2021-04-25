@@ -1,4 +1,5 @@
 import turtle
+import math
 
 """ DUDAS
 1. Las medidas para figura 1 y 2 son las mismas
@@ -35,23 +36,13 @@ colorRombo = "#2576C3"
 colorPentagono = "#808080"
 colorHexagono = "#cd853f"
 
-def Circulo(radio, order,lapiz):
+def Circulo(radio,lapiz):
     circulo = lapiz
     circulo.color("black")
     circulo.circle(radio)   
 
-    if(order == 1):                                 #si opcion 1 es circulo se debe acomodar el cursor para tal caso
-        circulo.left(90)                                
-        circulo.penup()
-        circulo.forward(radio/2)
-        circulo.left(90)
-        circulo.forward(radio/2)
-        circulo.right(180)
-        circulo.pendown()
-    else:
-        pass
     
-def Cuadrado(lado, order,lapiz):
+def Cuadrado(lado,lapiz):
     cuadrado = lapiz  
     cuadrado.color("black")
     cuadrado.forward(lado)
@@ -63,17 +54,8 @@ def Cuadrado(lado, order,lapiz):
     cuadrado.forward(lado)
     cuadrado.left(90)
 
-    if(order == 1):                                  #si la opcion 2 es circulo para cualquier otra figura el cursor se debe acomodar para tal caso
-        cuadrado.penup()
-        cuadrado.forward(lado/2)
-        cuadrado.right(90)
-        cuadrado.forward(lado/2)
-        cuadrado.left(90)
-        cuadrado.pendown()
-    else:
-        pass
 
-def Triangulo(lado, order,lapiz):
+def Triangulo(lado,lapiz):
     triangle = lapiz
     triangle.color("black")
     triangle.forward(lado)
@@ -83,19 +65,8 @@ def Triangulo(lado, order,lapiz):
     triangle.forward(lado)
     triangle.left(120)
 
-
-    if(order == 1):                                
-        triangle.penup()
-        triangle.forward(lado/2)
-        triangle.right(90)
-        triangle.forward(lado/2)
-        triangle.left(90)
-        triangle.pendown()
-    else:
-        pass
     
-
-def Rombo(lado, order,lapiz):
+def Rombo(lado,lapiz):
     Rombo = lapiz
     Rombo.color("black")
     Rombo.left(60)
@@ -108,18 +79,8 @@ def Rombo(lado, order,lapiz):
     Rombo.forward(lado)
     Rombo.right(120)
 
-    if(order == 1):                                  
-        Rombo.penup()
-        Rombo.forward(lado/2)
-        Rombo.right(90)
-        Rombo.forward(lado/2)
-        Rombo.left(90)
-        Rombo.pendown()
-    else:
-        pass
 
-
-def Pentagono(lado, order,lapiz):
+def Pentagono(lado,lapiz):
     Penta = lapiz
     Penta.color("black")
     Penta.forward(lado)
@@ -134,17 +95,7 @@ def Pentagono(lado, order,lapiz):
     Penta.left(72)
 
 
-    if(order == 1):                                  
-        Penta.penup()
-        Penta.forward(lado/2)
-        Penta.right(90)
-        Penta.forward(lado/2)
-        Penta.left(90)
-        Penta.pendown()
-    else:
-        pass
-
-def Hexagono(lado, order,lapiz):
+def Hexagono(lado,lapiz):
     Hexa = lapiz
     Hexa.color("black")
     Hexa.forward(lado) 
@@ -160,80 +111,86 @@ def Hexagono(lado, order,lapiz):
     Hexa.forward(lado)
     Hexa.right(300)
 
-    if(order == 1):                                  
-        Hexa.penup()
-        Hexa.forward(lado/2)
-        Hexa.right(90)
-        Hexa.forward(lado/2)
-        Hexa.left(90)
-        Hexa.pendown()
+
+    
+def FigInscritaCirculo(opcion2, radio):
+    if(opcion2 == 2):
+        lado = math.sqrt(2*(radio**2))
+        return lado
+    elif(opcion2 == 3):
+        lado = radio*math.sqrt(3)
+        return lado
+    elif(opcion2 == 5):
+        lado = radio
+        return lado
+    elif(opcion2 == 6):
+        rad = ((72/2)*math.pi) / 180
+        lado = 2*radio*(math.sin(rad))
+        return lado
     else:
         pass
-    
-
-
-
-#option1 = 1               #circulo x cuadraro
-#option2 = 2
-
-#option1 = 1                #circulo x triangulo     #AJUSTAR ALTURA PARA QUE TRIANGULO SE CENTRE EN CIRCULO
-#option2 = 3    
-
-option1 = 4                #circulo x rombo     
-option2 = 1 
-
-
-
-
+        
 
 lapiz = turtle.Turtle()
 
-if(option1 == 1):
-    Circulo(centimetros,option1,lapiz)
+Circulo(centimetros,lapiz)
+radio = centimetros
 
-elif(option1 == 2):
-    Cuadrado(centimetros, option2,lapiz)
+#para cuadrado
+"""
+lado = math.sqrt(2*(radio**2))
+lapiz.left(90)
+lapiz.penup()
+lapiz.forward(centimetros)
+lapiz.left(90)
+lapiz.forward(lado/2)
+lapiz.left(90)
+lapiz.forward(lado/2)
+lapiz.left(90)
+lapiz.pendown()
+Cuadrado(lado,lapiz)
+"""
 
-elif(option1 == 3):
-    Triangulo(centimetros, option2,lapiz)
+#para triangulo
 
-elif(option1 == 4):
-    Rombo(centimetros, option2,lapiz)
+"""lado = radio*math.sqrt(3)
+lapiz.left(90)
+lapiz.penup()
+lapiz.forward(centimetros*2)
+lapiz.right(210)
+lapiz.forward(lado)
+lapiz.left(120)
+lapiz.pendown()
+Triangulo(lado,lapiz)
+"""
 
-elif(option1 == 5):
-    Pentagono(centimetros, option2,lapiz)
+#para el hexagono
+"""lado = centimetros
+lapiz.left(90)
+lapiz.penup()
+lapiz.forward(centimetros)
+lapiz.left(90)
+lapiz.forward(centimetros)
+lapiz.left(120)
+lapiz.forward(centimetros)
+lapiz.right(300)
+lapiz.pendown()
+Hexagono(lado,lapiz)
+"""
+#para el pentagono
+"""rad = ((72/2)*math.pi) / 180
+lado = 2*radio*(math.sin(rad))
 
-elif(option1 == 6):
-    Hexagono(centimetros, option2,lapiz)
+lapiz.penup()
+lapiz.left(90)
+lapiz.forward(centimetros*2)
+lapiz.left(126)
+lapiz.forward(lado)
 
-else:
-    pass
-
-
-if(option2 == 1):
-    Circulo(centimetros,0,lapiz)
-
-elif(option2 == 2):
-    Cuadrado(centimetros, 0,lapiz)
-
-elif(option2 == 3):
-    Triangulo(centimetros, 0,lapiz)
-
-elif(option2 == 4):
-    Rombo(centimetros, 0,lapiz)
-
-elif(option2 == 5):
-    Pentagono(centimetros, 0,lapiz)
-
-elif(option2 == 6):
-    Hexagono(centimetros, 0,lapiz)
-
-else:
-    pass
-
-
-
-
-    
-
+lapiz.left(72)
+lapiz.forward(lado)
+lapiz.left(72)
+lapiz.pendown()
+Pentagono(lado,lapiz)
+"""
 
