@@ -1,12 +1,22 @@
 import turtle
 import math
 
+"""
+El modulo turltle utiliza pixeles como parametro de distancia
+para usar cm se debe realizar una conversion considerando los pixeles
+por centimetro de la pantalla respectiva
+para el presente caso se cuenta con una pantalla de:
 
-#1366x768 resolutin
-#30.5cm x 17 cm size
-#44.88px = 1cm
+resolucion1366x768 
+tamañño 30.5cm x 17 cm 
+por lo cual al calcular y dividir la diagonal de pixeles entre la de cm
+se obtiene la relacion de 44.88px = 1cm
+"""
 
 
+"""
+Los colores para las figuras geometricas definidos en hexadecimal 
+"""
 colorCirculo = "#ffff1a"
 colorCuadrado = "#ff0080"
 colorTriangulo = "#53ff1a"
@@ -14,6 +24,12 @@ colorRombo = "#2576C3"
 colorPentagono = "#808080"
 colorHexagono = "#9e4ae4"
 
+
+"""
+Para cada figura se define una funcion en donde se pasa como parametro una medida en cm y un objeto de
+tipo turlte para controlar el cursor
+Se utiliza el color negro para el borde en todas las figuras y se define un color diferente para el interior de la figura.
+"""
 def Circulo(radio,lapiz):
     circulo = lapiz
     circulo.color("black", colorCirculo)
@@ -101,7 +117,12 @@ def Hexagono(lado,lapiz):
     Hexa.right(300)
     Hexa.end_fill()
 
-    
+
+"""
+La funcion recibe cual figura se ha seleccionado y el valor del radio y
+caclula la relacion que tiene el lado del poligono con respecto al valor del
+radio que ha seleccionado el usuario segun cada figura y devuelve este valor
+"""
 def LadoPoligonoInscrito(opcion2, radio):
     if(opcion2 == 2):
         lado = math.sqrt(2*(radio**2))
@@ -119,6 +140,11 @@ def LadoPoligonoInscrito(opcion2, radio):
     else:
         pass
 
+"""
+La funcion recibe cual figura se ha seleccionado y el valor del lado de la misma y
+caclula la relacion que tiene el radio del circulo a inscribirse con respecto al valor del
+lado del poligono que ha seleccionado el usuario y devuelve ese valor
+"""
 def RadioCirculoInscrito(opcion1, lado):
     if(opcion1 == 2):
         radio = lado/2
@@ -141,6 +167,11 @@ def RadioCirculoInscrito(opcion1, lado):
     else:
         pass            
 
+"""
+Se encarga de manejar el dibujo para todas las combinaciones que tienen un poligono inscrito
+en un circulo, llamando a la funcion de circulo y despues acomodando el cursor en la posicion adecuada
+antes de invocar a la funcion del poligono que el usuario ha seleccionado
+"""
 def PoligonoInscritoEnCirculo(opcion2, radio,lapiz):
     if(opcion2 == 2):
         Circulo(radio,lapiz)    
@@ -198,7 +229,13 @@ def PoligonoInscritoEnCirculo(opcion2, radio,lapiz):
 
     else:
         pass
-        
+
+
+"""
+Se encarga de manejar el dibujo para todas las combinaciones que tienen un circulo inscrito
+en un poligono, llamando a la funcion del poligono y despues acomodando el cursor en la posicion adecuada
+antes de invocar a la funcion del circulo
+"""        
 def CirculoInscritoEnPoligono(opcion2,lado,lapiz):
     if(opcion2 == 2):
         Cuadrado(lado, lapiz)
@@ -247,7 +284,10 @@ def CirculoInscritoEnPoligono(opcion2,lado,lapiz):
         pass
 
  
-
+"""
+Contine una variable donde se define el formato del menu e imprime esta variable
+en pantalla
+"""
 def Menu():
         menu = """----------------------Menu----------------------\n             
         1. Circulo \n
@@ -262,6 +302,12 @@ def Menu():
         print(menu)
 
 
+"""
+punto de inicio del programa donde se despliega el menu y se interactua con el usuario
+se condicionan las opciones de figuras que no pueden ser inscritas en una figura especifica (ej un rombo en un circulo)
+y se llaman a las funciones que manejan cada caso segun sea un circulo inscrito en un poligono
+o un poligono inscrito en un circulo
+"""
 def mainF():
  
     Menu()
@@ -275,7 +321,6 @@ def mainF():
             print("\n El poligono seleccionado no puede ser inscrito en el circulo!! \n          **********Intente de nuevo**********\n")
             mainF()
             
-
          
     medidas = int(input("Introduzca la medida en cm para las figuras elegidas: "))
     centimetros = medidas * 44.88
@@ -285,8 +330,5 @@ def mainF():
         PoligonoInscritoEnCirculo(option2,centimetros,lapiz)
     else:
         CirculoInscritoEnPoligono(option1,centimetros,lapiz)
-
-    #print("\n"*4)
-    #mainF()
 
 mainF()
